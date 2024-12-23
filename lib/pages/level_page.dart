@@ -35,8 +35,7 @@ class LevelPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          PdfListScreen(level: levels[index]),
+                      builder: (context) => PdfListScreen(level: levels[index]),
                     ),
                   );
                 },

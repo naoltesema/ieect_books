@@ -7,12 +7,12 @@ class PdfListScreen extends StatelessWidget {
 
   // List of PDFs for each level
   final Map<String, List<String>> pdfPathsByLevel = {
-    'Level1': [
+    'Level 1': [
       'assets/pdf/level1/M01.pdf',
       'assets/pdf/level1/M02.pdf',
       'assets/pdf/level1/M03.pdf',
     ],
-    'Level2': [
+    'Level 2': [
       'assets/pdf/level2/M01.pdf',
       'assets/pdf/level2/M02.pdf',
       'assets/pdf/level2/M03.pdf',
@@ -32,31 +32,32 @@ class PdfListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Get the list of PDFs for the selected level
-    List<String> pdfPaths = pdfPathsByLevel[level] ?? ['No PDFs available'];
+    List<String> pdfPaths = pdfPathsByLevel[level] ?? [];
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Books for $level'),
         backgroundColor: Colors.black,
       ),
-      body: ListView.builder(
-        itemCount: pdfPaths.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
-            title: Text('Document ${index + 1}'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      PdfViewerScreen(pdfPath: pdfPaths[index]),
-                ),
-              );
-            },
-          );
-        },
-      ),
+      body: pdfPaths.isEmpty
+          ? const Center(child: Text('No PDFs available for this level'))
+          : ListView.builder(
+              itemCount: pdfPaths.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.picture_as_pdf, color: Colors.red),
+                  title: Text('Document ${index + 1}'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PdfViewerScreen(pdfPath: pdfPaths[index]),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
     );
   }
 }
