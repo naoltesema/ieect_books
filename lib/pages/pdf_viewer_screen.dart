@@ -29,7 +29,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
             final pdfControllerPinch = PdfControllerPinch(
-              document: snapshot.data!,  // Use the loaded PDF document
+              document: snapshot.hasData,  // Use the loaded PDF document
             );
             return Column(
               children: [
