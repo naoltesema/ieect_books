@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ieect_books/components/my_button.dart';
 import 'package:ieect_books/pages/level_page.dart';
 
-class WelcomePage extends StatefulWidget {
+class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
-  @override
-  State<WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,30 +16,29 @@ class _WelcomePageState extends State<WelcomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 100),
+              const Spacer(flex: 2),
               const Text(
-                'welcome to Ambo technic college electrical department ',
+                'Welcome to Ambo Technic College\nElectrical Department',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
+                  fontSize: 20, // Added font size for better visibility
+                  fontWeight: FontWeight.bold, // Makes the text stand out
                 ),
               ),
-              const SizedBox(height: 200),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: MyButton(
-                  buttonText: 'Next',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  LevelPage(),
-                      ),
-                    );
-                  },
-                ),
+              const Spacer(flex: 3),
+              MyButton(
+                buttonText: 'Next',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  LevelPage(),
+                    ),
+                  );
+                },
               ),
+              const Spacer(flex: 1),
             ],
           ),
         ),
