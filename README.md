@@ -1,3 +1,3 @@
 # ieect_books
 
-An app for all level industrial electrical electronics control technology books
+An app for industrial electrical electronics control technology books
