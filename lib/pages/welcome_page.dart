@@ -16,6 +16,7 @@ class WelcomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              
               const Spacer(flex: 2),
               const Text(
                 'Welcome to Ambo Technic College\nElectrical Department',
@@ -33,12 +34,17 @@ class WelcomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  LevelPage(),
+                      builder: (context) => LevelPage(),
                     ),
                   );
                 },
               ),
               const Spacer(flex: 1),
+              const Text(
+                "Made with ❤️ by Naol Tesema",
+                style: TextStyle(
+                    fontSize: 10, color: Color.fromARGB(255, 160, 158, 158)),
+              )
             ],
           ),
         ),

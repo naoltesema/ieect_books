@@ -21,4 +21,19 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/pdf/
+    - assets/pdf/level2/M01.pdf
+    - assets/pdf/level2/M02.pdf
+    - assets/pdf/level2/M03.pdf
+    - assets/pdf/level2/M03.pdf
+    - assets/pdf/level2/M04.pdf
+    - assets/pdf/level2/M05.pdf
+    - assets/pdf/level2/M06.pdf
+    - assets/pdf/level2/M07.pdf
+    - assets/pdf/level2/M08.pdf
+    - assets/pdf/level2/M09.pdf
+    - assets/pdf/level2/M10.pdf
+    - assets/pdf/level2/M11.pdf
+    - assets/image/Learning-bro.png
+
+    
+    

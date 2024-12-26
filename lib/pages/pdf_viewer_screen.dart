@@ -11,56 +11,70 @@ class PdfViewerScreen extends StatefulWidget {
 }
 
 class _PdfViewerScreenState extends State<PdfViewerScreen> {
+  late PdfControllerPinch pdfControllerPinch;
   int totalPageCount = 0, currentPage = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the PDF controller with the given document path
+    pdfControllerPinch = PdfControllerPinch(
+      document: PdfDocument.openAsset(widget.pdfPath),
+    );
+  }
+
+  @override
+  void dispose() {
+    pdfControllerPinch.dispose(); // Dispose of the controller to free resources
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('PDF Viewer'),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
+        centerTitle: true,
       ),
-      body: FutureBuilder<PdfDocument>(
-        future: PdfDocument.openAsset(widget.pdfPath),  // Load PDF asynchronously
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (snapshot.hasData) {
-            final pdfControllerPinch = PdfControllerPinch(
-              document: snapshot.hasData,  // Use the loaded PDF document
-            );
-            return Column(
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Total Pages: $totalPageCount"),
-                    const SizedBox(width: 20),
-                    Text("Current Page: $currentPage"),
-                  ],
+                Text(
+                  "Total Pages $totalPageCount",
+                  style: const TextStyle(color: Colors.black),
                 ),
-                Expanded(
-                  child: PdfViewPinch(
-                    controller: pdfControllerPinch,
-                    onDocumentLoaded: (doc) {
-                      setState(() {
-                        totalPageCount = doc.pagesCount;
-                      });
-                    },
-                    onPageChanged: (page) {
-                      setState(() {
-                        currentPage = page;
-                      });
-                    },
-                  ),
+                const SizedBox(width: 40),
+                Text(
+                  "Current Page $currentPage",
+                  style: const TextStyle(color: Colors.black),
                 ),
               ],
-            );
-          }
-          return const Center(child: Text('No Data'));
-        },
+            ),
+          ),
+          Expanded(
+            child: PdfViewPinch(
+              controller: pdfControllerPinch,
+              onDocumentLoaded: (doc) {
+                setState(() {
+                  totalPageCount = doc.pagesCount;
+                });
+              },
+              onPageChanged: (page) {
+                setState(() {
+                  currentPage = page;
+                });
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

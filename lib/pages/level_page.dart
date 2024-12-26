@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ieect_books/pages/pdf_list.dart';
 
 class LevelPage extends StatelessWidget {
-  final List<String> levels = ['Level 1', 'Level 2', 'Level 3', 'Level 4'];
+  final List<String> levels = ['Level 2', 'Level 3', 'Level 4', 'Level 5'];
 
   LevelPage({super.key});
 
@@ -11,14 +11,16 @@ class LevelPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        elevation: 20,
+        backgroundColor: Colors.white,
         title: const Text(
           'Select Level',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
+        centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
           itemCount: levels.length,
           itemBuilder: (context, index) {
